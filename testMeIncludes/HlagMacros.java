@@ -1,0 +1,33 @@
+#parse("HlagMacros.java")
+################## Mapper #####################
+#macro(renderMapperFields $method, $mockField)
+    #set( $point = '.' )
+    #set( $parameters = '(' )
+    #foreach($param in $method.getMethodParams())
+        $param.getType().getCanonicalName() $param.getName() =
+    #if($param.getType().getCanonicalName().toString().contains("List"))
+    new ArrayList();
+    #end
+        #foreach($type in $param.getType().getComposedTypes())
+            #if (!$type.isEnum())
+                #renderMockedFields($type.getFields())
+            #end
+            #if ($type.isEnum())
+                #foreach($field in $type.getFields())
+                    #if($type.getCanonicalName() == $field.getType().getCanonicalName())
+                        $param.getName()$point add($field.getOwnerClassCanonicalName().$field.getName());
+                    #end
+                #end
+            #end
+        #end
+        #if($parameters == '(')
+            #set( $parameters = $parameters + $param.getName())
+        #else
+            #set( $parameters = $parameters + ',' + $param.getName())
+        #end
+
+    #end
+    #set( $parameters = $parameters + ');')
+    $method.getReturnType().getCanonicalName() $StringUtils.deCapitalizeFirstLetter($method.getReturnType().getName()) = $mockField$point$method.getName()$parameters
+    Assertions.assertTrue($StringUtils.deCapitalizeFirstLetter($method.getReturnType().getName())$point contains($method.getReturnType().getComposedTypes()[0].getCanonicalName()$point values()[0]));
+#end

@@ -1,0 +1,34 @@
+#parse("TestMe macros.java")
+#parse("HlagMacros.java")
+#set($CLASS_IMPL= 'new ' + $TESTED_CLASS.canonicalName + 'Impl();')
+#if($PACKAGE_NAME)
+package ${PACKAGE_NAME};
+#end
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import java.util.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Assertions;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+#parse("File Header.java")
+class ${CLASS_NAME} {
+$TESTED_CLASS.canonicalName $StringUtils.deCapitalizeFirstLetter($TESTED_CLASS.name) = $CLASS_IMPL
+@BeforeEach
+void setUp() {
+    MockitoAnnotations.${MockitoMockBuilder.initMocksMethod}(this);
+}
+#foreach($method in $TESTED_CLASS.methods)
+    @Test
+    void #renderTestMethodName($method.name,$StringUtils.deCapitalizeFirstLetter($TESTED_CLASS.name))() {
+    #renderMapperFields($method,$StringUtils.deCapitalizeFirstLetter($TESTED_CLASS.name))
+    #if($MockitoMockBuilder.shouldStub($method,$TESTED_CLASS.fields))
+        #renderMockStubs($method,$TESTED_CLASS.fields)
+        #renderMethodCall($method,$TESTED_CLASS.name)
+        Assertions.#renderJUnitAssert($method)#end
+    }
+#end
+}
