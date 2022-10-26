@@ -9,7 +9,7 @@ import java.io.Writer;
 
 public class VelocityStartGenerator {
 
-    static String inputTemplate = "java_example.vm";
+    static String inputTemplate = "/testMeTests/HlagJUnitMappers.java";
     static String className = "VelocityExample";
     static String message = "Hello World!";
     static String outputFile = className + ".java";
@@ -23,9 +23,8 @@ public class VelocityStartGenerator {
         context.put("message", message);
 
         Writer writer = new FileWriter(new File(outputFile));
-        String variable = "xxx.vm";
         velocityEngine.init();
-        Velocity.mergeTemplate(variable, "UTF-8", context, writer);
+        Velocity.mergeTemplate(inputTemplate, "UTF-8", context, writer);
         writer.flush();
         writer.close();
 
