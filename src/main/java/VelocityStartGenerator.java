@@ -9,10 +9,11 @@ import java.io.Writer;
 
 public class VelocityStartGenerator {
 
-    static String inputTemplate = "/testMeTests/HlagJUnitMappers.java";
+    static String inputTemplate = "/resources/HlagJUnitMappers.vm";
     static String className = "VelocityExample";
     static String message = "Hello World!";
-    static String outputFile = className + ".java";
+    static String outputPath = "outputfiles/";
+    static String outputFile = outputPath+ className + ".java";
 
     public static void main(String[] args) throws IOException {
         VelocityEngine velocityEngine = new VelocityEngine();

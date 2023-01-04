@@ -2,9 +2,24 @@
 <project version="4">
   <component name="RemoteRepositoriesConfiguration">
     <remote-repository>
+      <option name="id" value="archiva.hlexternal" />
+      <option name="name" value="External Releases Repository" />
+      <option name="url" value="https://artifactory.fors.hlag.com/artifactory/hlexternal/" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="central" />
       <option name="name" value="Central Repository" />
       <option name="url" value="https://repo.maven.apache.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="payara-repos" />
+      <option name="name" value="Payara Artifacts" />
+      <option name="url" value="https://artifactory.fors.hlag.com/artifactory/payara-repos" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="archiva.hlrelease" />
+      <option name="name" value="Internal Releases Repository" />
+      <option name="url" value="https://artifactory.fors.hlag.com/artifactory/hlrelease/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="central" />
@@ -15,6 +30,16 @@
       <option name="id" value="jboss.community" />
       <option name="name" value="JBoss Community repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="archiva.repo1-cache" />
+      <option name="name" value="repo1-cache" />
+      <option name="url" value="https://artifactory.fors.hlag.com/artifactory/repo1" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="archiva.hlsnapshots" />
+      <option name="name" value="Internal Snapshot Repository" />
+      <option name="url" value="https://artifactory.fors.hlag.com/artifactory/hlsnapshots/" />
     </remote-repository>
   </component>
 </project>

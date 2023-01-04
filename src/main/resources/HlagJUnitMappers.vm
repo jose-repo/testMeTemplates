@@ -1,5 +1,5 @@
-#parse("TestMe macros.java")
-#parse("HlagMacros.java")
+#parse("/resources/TestMe macros.vm")
+#parse("/resources/HlagMacros.vm")
 #set($CLASS_IMPL= 'new ' + $TESTED_CLASS.canonicalName + 'Impl();')
 #if($PACKAGE_NAME)
 package ${PACKAGE_NAME};
@@ -14,7 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-#parse("File Header.java")
+##parse("File Header.java")
 class ${CLASS_NAME} {
 $TESTED_CLASS.canonicalName $StringUtils.deCapitalizeFirstLetter($TESTED_CLASS.name) = $CLASS_IMPL
 @BeforeEach

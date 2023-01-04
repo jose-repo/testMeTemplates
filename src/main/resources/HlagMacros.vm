@@ -1,4 +1,3 @@
-#parse("HlagMacros.java")
 ################## Mapper #####################
 #macro(renderMapperFields $method, $mockField)
     #set( $point = '.' )
